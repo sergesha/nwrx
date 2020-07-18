@@ -1,0 +1,10 @@
+{
+    "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../../dist/libs/common/ngx-immutable-store",
+    "lib": {
+        "entryFile": "src/index.ts",
+        "umdModuleIds": {
+            "crypto-js": "crypto-js"
+        }
+    }
+}

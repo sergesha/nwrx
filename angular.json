@@ -1,7 +1,226 @@
 {
-  "version": 1,
-  "projects": {},
-  "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "version": 1,
+    "projects": {
+        "common-ngx-intercom": {
+            "projectType": "library",
+            "root": "libs/common/ngx-intercom",
+            "sourceRoot": "libs/common/ngx-intercom/src",
+            "prefix": "nwrx",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:package",
+                    "options": {
+                        "tsConfig": "libs/common/ngx-intercom/tsconfig.lib.json",
+                        "project": "libs/common/ngx-intercom/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/common/ngx-intercom/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "libs/common/ngx-intercom/tsconfig.lib.json",
+                            "libs/common/ngx-intercom/tsconfig.spec.json"
+                        ],
+                        "exclude": ["**/node_modules/**", "!libs/common/ngx-intercom/**/*"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "options": {
+                        "jestConfig": "libs/common/ngx-intercom/jest.config.js",
+                        "tsConfig": "libs/common/ngx-intercom/tsconfig.spec.json",
+                        "setupFile": "libs/common/ngx-intercom/src/test-setup.ts",
+                        "passWithNoTests": true
+                    }
+                }
+            },
+            "schematics": {
+                "@nrwl/angular:component": {
+                    "styleext": "scss"
+                }
+            }
+        },
+        "demo-ngx-intercom": {
+            "projectType": "application",
+            "schematics": {
+                "@nrwl/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "apps/demo/ngx-intercom",
+            "sourceRoot": "apps/demo/ngx-intercom/src",
+            "prefix": "nwrx",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/apps/demo/ngx-intercom",
+                        "index": "apps/demo/ngx-intercom/src/index.html",
+                        "main": "apps/demo/ngx-intercom/src/main.ts",
+                        "polyfills": "apps/demo/ngx-intercom/src/polyfills.ts",
+                        "tsConfig": "apps/demo/ngx-intercom/tsconfig.app.json",
+                        "aot": true,
+                        "assets": ["apps/demo/ngx-intercom/src/favicon.ico", "apps/demo/ngx-intercom/src/assets"],
+                        "styles": ["apps/demo/ngx-intercom/src/styles.scss"],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/demo/ngx-intercom/src/environments/environment.ts",
+                                    "with": "apps/demo/ngx-intercom/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "demo-ngx-intercom:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "demo-ngx-intercom:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "demo-ngx-intercom:build"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "apps/demo/ngx-intercom/tsconfig.app.json",
+                            "apps/demo/ngx-intercom/tsconfig.spec.json"
+                        ],
+                        "exclude": ["**/node_modules/**", "!apps/demo/ngx-intercom/**/*"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "options": {
+                        "jestConfig": "apps/demo/ngx-intercom/jest.config.js",
+                        "tsConfig": "apps/demo/ngx-intercom/tsconfig.spec.json",
+                        "setupFile": "apps/demo/ngx-intercom/src/test-setup.ts",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "demo-ngx-intercom-e2e": {
+            "root": "apps/demo/ngx-intercom-e2e",
+            "sourceRoot": "apps/demo/ngx-intercom-e2e/src",
+            "projectType": "application",
+            "architect": {
+                "e2e": {
+                    "builder": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/demo/ngx-intercom-e2e/cypress.json",
+                        "tsConfig": "apps/demo/ngx-intercom-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "demo-ngx-intercom:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "demo-ngx-intercom:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["apps/demo/ngx-intercom-e2e/tsconfig.e2e.json"],
+                        "exclude": ["**/node_modules/**", "!apps/demo/ngx-intercom-e2e/**/*"]
+                    }
+                }
+            }
+        },
+        "common-ngx-immutable-store": {
+            "projectType": "library",
+            "root": "libs/common/ngx-immutable-store",
+            "sourceRoot": "libs/common/ngx-immutable-store/src",
+            "prefix": "nwrx",
+            "architect": {
+                "build": {
+                    "builder": "@nrwl/angular:package",
+                    "options": {
+                        "tsConfig": "libs/common/ngx-immutable-store/tsconfig.lib.json",
+                        "project": "libs/common/ngx-immutable-store/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/common/ngx-immutable-store/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "libs/common/ngx-immutable-store/tsconfig.lib.json",
+                            "libs/common/ngx-immutable-store/tsconfig.spec.json"
+                        ],
+                        "exclude": ["**/node_modules/**", "!libs/common/ngx-immutable-store/**/*"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "options": {
+                        "jestConfig": "libs/common/ngx-immutable-store/jest.config.js",
+                        "tsConfig": "libs/common/ngx-immutable-store/tsconfig.spec.json",
+                        "passWithNoTests": true,
+                        "setupFile": "libs/common/ngx-immutable-store/src/test-setup.ts"
+                    }
+                }
+            },
+            "schematics": {
+                "@nrwl/angular:component": {
+                    "style": "scss"
+                }
+            }
+        }
+    },
+    "cli": {
+        "defaultCollection": "@nrwl/angular"
+    },
+    "schematics": {
+        "@nrwl/angular:application": {
+            "unitTestRunner": "jest",
+            "e2eTestRunner": "cypress"
+        },
+        "@nrwl/angular:library": {
+            "unitTestRunner": "jest"
+        }
+    },
+    "defaultProject": "demo-ngx-intercom"
 }

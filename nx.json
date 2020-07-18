@@ -1,14 +1,36 @@
 {
-  "npmScope": "nwrx",
-  "implicitDependencies": {
-    "angular.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
+    "npmScope": "nwrx",
+    "implicitDependencies": {
+        "angular.json": "*",
+        "package.json": {
+            "dependencies": "*",
+            "devDependencies": "*"
+        },
+        "tsconfig.json": "*",
+        "tslint.json": "*",
+        "nx.json": "*"
     },
-    "tsconfig.json": "*",
-    "tslint.json": "*",
-    "nx.json": "*"
-  },
-  "projects": {}
+    "projects": {
+        "common-ngx-intercom": {
+            "tags": []
+        },
+        "demo-ngx-intercom": {
+            "tags": []
+        },
+        "demo-ngx-intercom-e2e": {
+            "tags": [],
+            "implicitDependencies": ["demo-ngx-intercom"]
+        },
+        "common-ngx-immutable-store": {
+            "tags": []
+        }
+    },
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "@nrwl/workspace/tasks-runners/default",
+            "options": {
+                "cacheableOperations": ["build", "lint", "test", "e2e"]
+            }
+        }
+    }
 }

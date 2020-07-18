@@ -1,0 +1,288 @@
+{
+    "rulesDirectory": ["node_modules/@nrwl/workspace/src/tslint", "node_modules/codelyzer"],
+    "rules": {
+        "angular-whitespace": {
+            "severity": "error",
+            "options": ["check-interpolation", "check-semicolon"]
+        },
+        "arrow-return-shorthand": true,
+        "callable-types": true,
+        "class-name": true,
+        "component-class-suffix": {
+            "severity": "error",
+            "options": ["Component"]
+        },
+        "component-selector": [true, "element", "app", "nwrx", "kebab-case"],
+        "contextual-lifecycle": {
+            "severity": "error"
+        },
+        "curly": {
+            "severity": "error"
+        },
+        "deprecation": {
+            "severity": "warn"
+        },
+        "directive-class-suffix": {
+            "severity": "error",
+            "options": ["Directive"]
+        },
+        "directive-selector": [true, "attribute", "app", "nwrx", "camelCase"],
+        "encoding": {
+            "severity": "error"
+        },
+        "eofline": {
+            "severity": "error"
+        },
+        "forin": true,
+        "import-blacklist": [true, "rxjs/Rx"],
+        "indent": {
+            "severity": "error",
+            "options": ["spaces", 4]
+        },
+        "interface-name": {
+            "severity": "warning",
+            "options": ["always-prefix"]
+        },
+        "interface-over-type-literal": true,
+        "linebreak-style": {
+            "severity": "error",
+            "options": ["LF"]
+        },
+        "member-access": {
+            "severity": "warning",
+            "options": ["check-parameter-property"]
+        },
+        "member-ordering": [
+            true,
+            {
+                // "order": "statics-first"
+                /// "order": ["static-field", "instance-field", "static-method", "instance-method"]
+                "order": [
+                    "public-static-field",
+                    "protected-static-field",
+                    "private-static-field",
+
+                    "public-instance-field",
+                    "protected-instance-field",
+                    "private-instance-field",
+
+                    "public-constructor",
+                    "protected-constructor",
+                    "private-constructor",
+
+                    "public-static-method",
+                    "protected-static-method",
+                    "private-static-method",
+
+                    "public-instance-method",
+                    "protected-instance-method",
+                    "private-instance-method"
+                ]
+            }
+        ],
+        "new-parens": {
+            "severity": "error"
+        },
+        "no-any": {
+            "severity": "warning"
+        },
+        "no-arg": true,
+        "no-bitwise": true,
+        "no-conflicting-lifecycle": true,
+        "no-console": {
+            "severity": "warning",
+            "options": ["log", "debug", "info", "time", "timeEnd", "trace"]
+        },
+        "no-construct": true,
+        "no-debugger": true,
+        "no-duplicate-super": true,
+        "no-empty": false,
+        "no-empty-interface": true,
+        "no-eval": true,
+        "no-host-metadata-property": false,
+        "no-inferrable-types": [false, "ignore-params", "ignore-properties"],
+        "no-input-rename": true,
+        "no-inputs-metadata-property": true,
+        "no-misused-new": true,
+        "no-non-null-assertion": true,
+        "no-output-native": true,
+        "no-output-on-prefix": true,
+        "no-output-rename": true,
+        "no-outputs-metadata-property": true,
+        "no-shadowed-variable": true,
+        "no-string-literal": false,
+        "no-string-throw": true,
+        "no-switch-case-fall-through": true,
+        "no-unnecessary-initializer": true,
+        "no-unused-expression": true,
+        "no-var-keyword": true,
+        "nx-enforce-module-boundaries": [
+            true,
+            {
+                "allow": [],
+                "depConstraints": [
+                    {
+                        "sourceTag": "*",
+                        "onlyDependOnLibsWithTags": ["*"]
+                    }
+                ],
+                "enforceBuildableLibDependency": true
+            }
+        ],
+        "object-literal-sort-keys": false,
+        "ordered-imports": {
+            "severity": "error",
+            "options": [
+                {
+                    "named-imports-order": "lowercase-first",
+                    "import-sources-order": "lowercase-first",
+                    "grouped-imports": true,
+                    "groups": [
+                        {
+                            "name": "angular core modules",
+                            "match": "^@angular",
+                            "order": 1
+                        },
+                        {
+                            "name": "rxjs",
+                            "match": "^rxjs",
+                            "order": 10
+                        },
+                        {
+                            "name": "nwrx",
+                            "match": "^@nwrx",
+                            "order": 40
+                        },
+                        {
+                            "name": "environments",
+                            "match": "^@environments",
+                            "order": 50
+                        },
+                        {
+                            "name": "core",
+                            "match": "^@core",
+                            "order": 60
+                        },
+                        {
+                            "name": "shared",
+                            "match": "^@shared",
+                            "order": 70
+                        },
+                        {
+                            "name": "lib",
+                            "match": "^@lib",
+                            "order": 80
+                        },
+                        {
+                            "name": "testing",
+                            "match": "^@testing",
+                            "order": 90
+                        },
+                        {
+                            "name": "local",
+                            "match": "^(../)",
+                            "order": 100
+                        },
+                        {
+                            "name": "local",
+                            "match": "^(./)",
+                            "order": 101
+                        },
+                        {
+                            "name": "other @",
+                            "match": "^@",
+                            "order": 20
+                        },
+                        {
+                            "name": "other",
+                            "match": ".*",
+                            "order": 30
+                        }
+                    ]
+                }
+            ]
+        },
+        "prefer-const": {
+            "severity": "error",
+            "options": [
+                {
+                    "destructuring": "any"
+                }
+            ]
+        },
+        "prefer-inline-decorator": {
+            "severity": "error"
+        },
+        "quotemark": {
+            "severity": "error",
+            "options": ["single", "jsx-double"]
+        },
+        "radix": true,
+        "semicolon": {
+            "severity": "error",
+            "options": ["always"]
+        },
+        "space-before-function-paren": {
+            "severity": "error",
+            "options": [
+                {
+                    "anonymous": "never",
+                    "named": "never",
+                    "asyncArrow": "never",
+                    "method": "never",
+                    "constructor": "never"
+                }
+            ]
+        },
+        "switch-final-break": {
+            "severity": "error",
+            "options": ["always"]
+        },
+        "template-banana-in-box": true,
+        "template-no-negated-async": true,
+        "triple-equals": [true, "allow-null-check"],
+        "typedef": {
+            "severity": "warning",
+            "options": [
+                "call-signature",
+                "parameter",
+                "arrow-parameter",
+                "property-declaration",
+                "variable-declaration",
+                "member-variable-declaration",
+                "object-destructuring",
+                "array-destructuring"
+            ]
+        },
+        "unified-signatures": true,
+        "unnecessary-else": {
+            "severity": "warning",
+            "options": [
+                {
+                    "allow-else-if": true
+                }
+            ]
+        },
+        "use-lifecycle-interface": true,
+        "use-pipe-transform-interface": true,
+        "variable-name": {
+            "severity": "error",
+            "options": ["check-format", "allow-pascal-case"]
+        },
+        "whitespace": {
+            "severity": "error",
+            "options": [
+                "check-branch",
+                "check-decl",
+                "check-operator",
+                "check-module",
+                "check-separator",
+                "check-rest-spread",
+                "check-type",
+                "check-typecast",
+                "check-type-operator",
+                "check-preblock"
+            ]
+        }
+    }
+}
