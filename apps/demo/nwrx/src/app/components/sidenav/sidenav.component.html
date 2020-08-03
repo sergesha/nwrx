@@ -1,0 +1,9 @@
+<button
+    mat-flat-button
+    *ngFor="let link of links"
+    [routerLink]="link.path"
+    [routerLinkActive]="['active']"
+    [routerLinkActiveOptions]="{ exact: true }"
+>
+    {{ link.name }}
+</button>

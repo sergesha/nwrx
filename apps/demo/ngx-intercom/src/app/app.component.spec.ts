@@ -24,13 +24,13 @@ describe('AppComponent', () => {
     it(`should have as title 'demo-intercom'`, () => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.debugElement.componentInstance;
-        expect(app.title).toEqual('demo-intercom');
+        expect(app.title).toEqual('demo-intercom-page');
     });
 
     it('should render title in a h1 tag', () => {
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector('h1').textContent).toContain('Welcome to demo-intercom!');
+        expect(compiled.querySelector('h1').textContent).toContain('Welcome to demo-intercom-page!');
     });
 });

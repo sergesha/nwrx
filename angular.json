@@ -33,8 +33,6 @@
                     "builder": "@nrwl/jest:jest",
                     "options": {
                         "jestConfig": "libs/common/ngx-intercom/jest.config.js",
-                        "tsConfig": "libs/common/ngx-intercom/tsconfig.spec.json",
-                        "setupFile": "libs/common/ngx-intercom/src/test-setup.ts",
                         "passWithNoTests": true
                     }
                 }
@@ -131,8 +129,6 @@
                     "builder": "@nrwl/jest:jest",
                     "options": {
                         "jestConfig": "apps/demo/ngx-intercom/jest.config.js",
-                        "tsConfig": "apps/demo/ngx-intercom/tsconfig.spec.json",
-                        "setupFile": "apps/demo/ngx-intercom/src/test-setup.ts",
                         "passWithNoTests": true
                     }
                 }
@@ -197,15 +193,132 @@
                     "builder": "@nrwl/jest:jest",
                     "options": {
                         "jestConfig": "libs/common/ngx-immutable-store/jest.config.js",
-                        "tsConfig": "libs/common/ngx-immutable-store/tsconfig.spec.json",
-                        "passWithNoTests": true,
-                        "setupFile": "libs/common/ngx-immutable-store/src/test-setup.ts"
+                        "passWithNoTests": true
                     }
                 }
             },
             "schematics": {
                 "@nrwl/angular:component": {
                     "style": "scss"
+                }
+            }
+        },
+        "demo-nwrx": {
+            "projectType": "application",
+            "schematics": {
+                "@nrwl/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "apps/demo/nwrx",
+            "sourceRoot": "apps/demo/nwrx/src",
+            "prefix": "nwrx",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/apps/demo/nwrx",
+                        "index": "apps/demo/nwrx/src/index.html",
+                        "main": "apps/demo/nwrx/src/main.ts",
+                        "polyfills": "apps/demo/nwrx/src/polyfills.ts",
+                        "tsConfig": "apps/demo/nwrx/tsconfig.app.json",
+                        "aot": true,
+                        "assets": ["apps/demo/nwrx/src/favicon.ico", "apps/demo/nwrx/src/assets"],
+                        "styles": [
+                            "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                            "apps/demo/nwrx/src/styles.scss"
+                        ],
+                        "scripts": [],
+                        "allowedCommonJsDependencies": ["crypto-js"]
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/demo/nwrx/src/environments/environment.ts",
+                                    "with": "apps/demo/nwrx/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "demo-nwrx:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "demo-nwrx:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "demo-nwrx:build"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["apps/demo/nwrx/tsconfig.app.json", "apps/demo/nwrx/tsconfig.spec.json"],
+                        "exclude": ["**/node_modules/**", "!apps/demo/nwrx/**/*"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "options": {
+                        "jestConfig": "apps/demo/nwrx/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "demo-nwrx-e2e": {
+            "root": "apps/demo/nwrx-e2e",
+            "sourceRoot": "apps/demo/nwrx-e2e/src",
+            "projectType": "application",
+            "architect": {
+                "e2e": {
+                    "builder": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/demo/nwrx-e2e/cypress.json",
+                        "tsConfig": "apps/demo/nwrx-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "demo-nwrx:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "demo-nwrx:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["apps/demo/nwrx-e2e/tsconfig.e2e.json"],
+                        "exclude": ["**/node_modules/**", "!apps/demo/nwrx-e2e/**/*"]
+                    }
                 }
             }
         }
@@ -220,7 +333,12 @@
         },
         "@nrwl/angular:library": {
             "unitTestRunner": "jest"
+        },
+        "@schematics/angular": {
+            "component": {
+                "changeDetection": "OnPush"
+            }
         }
     },
-    "defaultProject": "demo-ngx-intercom"
+    "defaultProject": "demo-nwrx"
 }

@@ -9,7 +9,7 @@ import { IImmutableStorage } from './immutable-storage.interface';
  * <T> - type of input data
  * <S> - type of data in storage, can differ from input type T
  */
-export interface IStoreModel<T = any, S = T> {
+export interface IImmutableStoreModel<T = any, S = T> {
     readonly name: string;
     readonly storage: IImmutableStorage<S>;
 

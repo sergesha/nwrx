@@ -1,11 +1,11 @@
 import { EMPTY, Observable } from 'rxjs';
 
 import { IImmutableStorage } from '../interfaces/immutable-storage.interface';
-import { IStoreModel } from '../interfaces/store-model.interface';
+import { IImmutableStoreModel } from '../interfaces/store-model.interface';
 import { TStorageMap } from '../types/storage-map.type';
 import { TStorageSelector } from '../types/storage-selector.type';
 
-export class NullStoreModel<T, S = T> implements IStoreModel<T, S> {
+export class NullStoreModel<T, S = T> implements IImmutableStoreModel<T, S> {
     public readonly name: string = 'NullStoreModel';
     public readonly storage: IImmutableStorage<S> = null;
 

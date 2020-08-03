@@ -8,20 +8,20 @@ import {
     STORE_INTERNAL_ROOT_CONFIG_TOKEN,
 } from './models/store.tokens';
 import { featureManagerServiceFactory } from './services/feature-manager.service';
-import { StoreService } from './services/store.service';
-import { StoreRootModule } from './store-root/store-root.module';
+import { ImmutableStoreService } from './services/immutable-store.service';
+import { ImmutableStoreRootModule } from './store-root/immutable-store-root.module';
 
 @NgModule({
     imports: [CommonModule],
 })
 export class ImmutableStoreModule {
-    public static forRoot(storeRootConfig: IStoreRootConfig): ModuleWithProviders<StoreRootModule> {
+    public static forRoot(storeRootConfig: IStoreRootConfig): ModuleWithProviders<ImmutableStoreRootModule> {
         return {
-            ngModule: StoreRootModule,
+            ngModule: ImmutableStoreRootModule,
             providers: [
                 {
                     provide: STORE_INTERNAL_FEATURE_MAP_TOKEN,
-                    useValue: StoreRootModule.storeFeatureMap,
+                    useValue: ImmutableStoreRootModule.storeFeatureMap,
                 },
                 {
                     provide: STORE_INTERNAL_FEATURE_MANAGER_SERVICE_TOKEN,
@@ -31,7 +31,7 @@ export class ImmutableStoreModule {
                     provide: STORE_INTERNAL_ROOT_CONFIG_TOKEN,
                     useValue: storeRootConfig,
                 },
-                StoreService,
+                ImmutableStoreService,
             ],
         };
     }

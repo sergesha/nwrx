@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 
 import { TStoreFeatureMap } from '../interfaces/store-feature-map.interface';
-import { IStoreFeature } from '../interfaces/store-feature.interface';
+import { IImmutableStoreFeature } from '../interfaces/store-feature.interface';
 import { STORE_INTERNAL_FEATURE_MAP_TOKEN } from '../models/store.tokens';
 
 export function featureManagerServiceFactory(): FeatureManagerService {
@@ -16,13 +16,13 @@ export class FeatureManagerService {
         return !!key && !!this.storeFeatureMap[key];
     }
 
-    public addFeatures(features: IStoreFeature | IStoreFeature[]): void {
+    public addFeatures(features: IImmutableStoreFeature | IImmutableStoreFeature[]): void {
         if (features) {
             if (!Array.isArray(features)) {
                 features = [features];
             }
 
-            features.map((feature: IStoreFeature) => {
+            features.map((feature: IImmutableStoreFeature) => {
                 if (!this.hasFeature(feature.key)) {
                     this.storeFeatureMap = {
                         ...this.storeFeatureMap,
@@ -33,17 +33,17 @@ export class FeatureManagerService {
         }
     }
 
-    public getFeature(key: string): IStoreFeature | null {
+    public getFeature(key: string): IImmutableStoreFeature | null {
         return this.hasFeature(key) ? this.storeFeatureMap[key] : null;
     }
 
-    public removeFeatures(features: IStoreFeature | IStoreFeature[]): void {
+    public removeFeatures(features: IImmutableStoreFeature | IImmutableStoreFeature[]): void {
         if (features) {
             if (!Array.isArray(features)) {
                 features = [features];
             }
 
-            features.map((feature: IStoreFeature) => {
+            features.map((feature: IImmutableStoreFeature) => {
                 if (typeof feature.model?.destroy === 'function') {
                     feature.model.destroy();
                 }

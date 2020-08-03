@@ -3,20 +3,20 @@ import { TestBed } from '@angular/core/testing';
 import { STORE_INTERNAL_FEATURE_MANAGER_SERVICE_TOKEN } from '../models/store.tokens';
 
 import { FeatureManagerService } from './feature-manager.service';
-import { StoreService } from './store.service';
+import { ImmutableStoreService } from './immutable-store.service';
 
-describe('StoreService', () => {
-    let service: StoreService;
+describe('ImmutableStoreService', () => {
+    let service: ImmutableStoreService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 FeatureManagerService,
-                StoreService,
+                ImmutableStoreService,
                 { provide: STORE_INTERNAL_FEATURE_MANAGER_SERVICE_TOKEN, useValue: null },
             ],
         });
-        service = TestBed.inject(StoreService);
+        service = TestBed.inject(ImmutableStoreService);
     });
 
     it('should be created', () => {

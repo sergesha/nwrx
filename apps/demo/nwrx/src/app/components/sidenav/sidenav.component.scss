@@ -1,0 +1,12 @@
+button {
+    display: block;
+    width: 100%;
+
+    &:hover {
+        background-color: lightpink;
+    }
+}
+
+.active {
+    border: solid 1px;
+}

@@ -6,9 +6,9 @@
             "dependencies": "*",
             "devDependencies": "*"
         },
-        "tsconfig.json": "*",
         "tslint.json": "*",
-        "nx.json": "*"
+        "nx.json": "*",
+        "tsconfig.base.json": "*"
     },
     "projects": {
         "common-ngx-intercom": {
@@ -23,6 +23,13 @@
         },
         "common-ngx-immutable-store": {
             "tags": []
+        },
+        "demo-nwrx": {
+            "tags": []
+        },
+        "demo-nwrx-e2e": {
+            "tags": [],
+            "implicitDependencies": ["demo-nwrx"]
         }
     },
     "tasksRunnerOptions": {
@@ -32,5 +39,8 @@
                 "cacheableOperations": ["build", "lint", "test", "e2e"]
             }
         }
+    },
+    "affected": {
+        "defaultBase": "master"
     }
 }

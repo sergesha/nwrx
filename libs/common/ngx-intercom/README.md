@@ -19,7 +19,7 @@ Because it's already done for you!
 Using of localStorage can be configured also to permanently save data.
 
 ```typescript
-import { IntercomModule } from 'ngx-intercom';
+import { IntercomModule } from 'ngx-intercom-page';
 
 // in app.module.ts
 @NgModule( {
@@ -35,7 +35,7 @@ import { IntercomModule } from 'ngx-intercom';
 export class AppModule { ... }
 
 // in your first component
-import { IntercomService } from 'ngx-intercom';
+import { IntercomService } from 'ngx-intercom-page';
 
 @Component( {
   selector: 'app-home',
@@ -71,7 +71,7 @@ class HomeComponent implements OnInit {
 }
 
 // in your other component
-import { IntercomService } from 'ngx-intercom';
+import { IntercomService } from 'ngx-intercom-page';
 import { Subscription } from 'rxjs';
 
 @Component( {

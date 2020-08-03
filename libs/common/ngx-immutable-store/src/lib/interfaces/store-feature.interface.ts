@@ -1,6 +1,6 @@
-import { IStoreModel } from './store-model.interface';
+import { IImmutableStoreModel } from './store-model.interface';
 
-export interface IStoreFeature<T = any, V extends IStoreModel = IStoreModel, S = T> {
+export interface IImmutableStoreFeature<T = any, V extends IImmutableStoreModel = IImmutableStoreModel, S = T> {
     key: string;
     model: V;
 }

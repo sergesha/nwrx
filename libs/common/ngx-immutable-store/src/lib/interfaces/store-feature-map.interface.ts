@@ -1,6 +1,6 @@
-import { IStoreFeature } from './store-feature.interface';
-import { IStoreModel } from './store-model.interface';
+import { IImmutableStoreFeature } from './store-feature.interface';
+import { IImmutableStoreModel } from './store-model.interface';
 
-export type TStoreFeatureMap<T = any, V extends IStoreModel = IStoreModel> = {
-    [p in keyof T]: IStoreFeature<T[p], V>;
+export type TStoreFeatureMap<T = any, V extends IImmutableStoreModel = IImmutableStoreModel> = {
+    [p in keyof T]: IImmutableStoreFeature<T[p], V>;
 };
